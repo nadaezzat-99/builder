@@ -65,7 +65,7 @@ class converterWindow(QMainWindow, Ui_MainWindow):
             with oracledb.connect(user='ACCEPTANCE', password='acceptance', dsn='10.50.70.5:1521/mwtest') as connection:
                 with connection.cursor() as cursor: 
                     for merchant_data in self.required_numbers:
-                        query = """SELECT NID_PHOTO1, NID_PHOTO2,BUS_DOC_PHOTO_1 FROM merchant WHERE MOBILE_NUMBER = :condition_value"""
+                        query = """SELECT NID_PHOTO1, NID_PHOTO2,BUS_DOC_PHOTO_1,BUS_DOC_PHOTO_2,BUS_DOC_PHOTO_3,BUS_DOC_PHOTO_4,MARKET_PHOTO,UTILITIES_DOC_PHOTO,COMMERCIAL_DOC_PHOTO,TAX_CARD_DOC_PHOTO,TEMP_NID_PHOTO1,TEMP_NID_PHOTO2,TEMP_BUS_DOC_PHOTO_1,TEMP_BUS_DOC_PHOTO_2,TEMP_BUS_DOC_PHOTO_3,TEMP_BUS_DOC_PHOTO_4,TEMP_COMMERCIAL_DOC_PHOTO,TEMP_TAX_CARD_DOC_PHOTO,TEMP_UTILITIES_DOC_PHOTO,BANK_ACCOUNT_STATEMENT_PHOTO,TEMP_BANK_ACCOUNT_ST_PHOTO FROM merchant WHERE MOBILE_NUMBER = :condition_value"""
                         cursor.execute(query, condition_value=merchant_data["number"])
                         merchant_data["images"] = cursor.fetchall()
             self.save_file()
